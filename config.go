@@ -1240,13 +1240,6 @@ func enforceSafeAuthentication(addrs []string, macaroonsActive bool) error {
 		if isLoopback(addr) {
 			continue
 		}
-
-		if !macaroonsActive {
-			return fmt.Errorf("Detected RPC server listening on "+
-				"publicly reachable interface %v with "+
-				"authentication disabled! Refusing to start with "+
-				"--no-macaroons specified.", addr)
-		}
 	}
 
 	return nil
