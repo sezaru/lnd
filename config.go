@@ -1145,22 +1145,6 @@ func enforceSafeAuthentication(addrs []string, macaroonsActive bool) error {
 		return false
 	}
 
-	// We'll now examine all addresses that this RPC server is listening
-	// on. If it's a localhost address, we'll skip it, otherwise, we'll
-	// return an error if macaroons are inactive.
-	for _, addr := range addrs {
-		if isLoopback(addr) {
-			continue
-		}
-
-		if !macaroonsActive {
-			return fmt.Errorf("Detected RPC server listening on "+
-				"publicly reachable interface %v with "+
-				"authentication disabled! Refusing to start with "+
-				"--no-macaroons specified.", addr)
-		}
-	}
-
 	return nil
 }
 
